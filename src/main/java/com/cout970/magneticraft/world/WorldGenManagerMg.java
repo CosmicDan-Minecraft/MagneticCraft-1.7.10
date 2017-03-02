@@ -18,9 +18,7 @@ public class WorldGenManagerMg implements IWorldGenerator {
 
     public static OreGenConfig GenCopper;
     public static OreGenConfig GenTungsten;
-    public static OreGenConfig GenUranium;
     public static OreGenConfig GenSulfur;
-    public static OreGenConfig GenThorium;
     public static OreGenConfig GenSalt;
     public static OreGenConfig GenZinc;
     public static GaussOreGenConfig GenLime;
@@ -42,9 +40,7 @@ public class WorldGenManagerMg implements IWorldGenerator {
     public WorldGenManagerMg() {
         Copper = new WorldGenMinable(ManagerBlocks.oreCopper, 0, GenCopper.amount_per_vein, Blocks.stone);
         Tungsten = new WorldGenMinable(ManagerBlocks.oreTungsten, 0, GenTungsten.amount_per_vein, Blocks.stone);
-        Uranium = new WorldGenMinable(ManagerBlocks.oreUranium, 0, GenUranium.amount_per_vein, Blocks.stone);
         Sulfur = new WorldGenMinable(ManagerBlocks.oreSulfur, 0, GenSulfur.amount_per_vein, Blocks.stone);
-        Thorium = new WorldGenMinable(ManagerBlocks.oreThorium, 0, GenThorium.amount_per_vein, Blocks.stone);
         Salt = new WorldGenMinable(ManagerBlocks.oreSalt, 0, GenSalt.amount_per_vein, Blocks.stone);
         Zinc = new WorldGenMinable(ManagerBlocks.oreZinc, 0, GenZinc.amount_per_vein, Blocks.stone);
         Limestone = new WorldGenMinable(ManagerBlocks.oreLime, 0, GenLime.amount_per_vein, Blocks.stone);
@@ -57,9 +53,7 @@ public class WorldGenManagerMg implements IWorldGenerator {
             useOreGenConfig(random, world, chunkX, chunkZ, GenCopper, Copper);
             useOreGenConfig(random, world, chunkX, chunkZ, GenTungsten, Tungsten);
             useOreGenConfig(random, world, chunkX, chunkZ, GenSulfur, Sulfur);
-            useOreGenConfig(random, world, chunkX, chunkZ, GenUranium, Uranium);
             useOreGenConfig(random, world, chunkX, chunkZ, GenSalt, Salt);
-            useOreGenConfig(random, world, chunkX, chunkZ, GenThorium, Thorium);
             useOreGenConfig(random, world, chunkX, chunkZ, GenZinc, Zinc);
             useRandomOreGenConfig(random, world, chunkX, chunkZ, GenLime, Limestone);
             if (GenOil) {

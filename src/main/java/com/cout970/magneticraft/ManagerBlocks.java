@@ -204,9 +204,7 @@ public class ManagerBlocks {
 
     public static Block oreCopper;
     public static Block oreTungsten;
-    public static Block oreUranium;
     public static Block oreSulfur;
-    public static Block oreThorium;
     public static Block oreZinc;
     public static Block oreSalt;
     public static Block oreLime;
@@ -340,9 +338,7 @@ public class ManagerBlocks {
         oilSource = new BlockOilSource();
         oreCopper = new BlockOre("copper_ore", "pickaxe", 1);
         oreTungsten = new BlockOre("tungsten_ore", "pickaxe", 2);
-        oreUranium = new BlockOre("uranium_ore", "pickaxe", 2);
         oreSulfur = new BlockOre("sulfur_ore", "pickaxe", 1);
-        oreThorium = new BlockOre("thorium_ore", "pickaxe", 2);
         oreSalt = new BlockOre("salt_ore", "pickaxe", 1);
         oreZinc = new BlockOre("zinc_ore", "pickaxe", 1);
 
@@ -500,9 +496,7 @@ public class ManagerBlocks {
         addBlock(oreCopper, "Copper Ore", true);
         addBlock(oreSalt, "Salt Ore", true);
         addBlock(oreSulfur, "Sulfur Ore", true);
-        addBlock(oreThorium, "Thorium Ore", true);
         addBlock(oreTungsten, "Tungsten Ore", true);
-        addBlock(oreUranium, "Uranium Ore", true);
 
         addBlock(oreLime, "Limestone", true);
         addAltItemBlock(slabOreLimeSingle, ItemBlockMgSlab.class, "Limestone Slab");

@@ -39,8 +39,6 @@ public class ManagerConfig {
         WorldGenManagerMg.GenCopper = getOreConfig(config,   "copper",    10, 8, 80, 30);
         WorldGenManagerMg.GenTungsten = getOreConfig(config, "tungsten",  2,  6, 10, 0);
         WorldGenManagerMg.GenSulfur = getOreConfig(config,   "sulfur",    3,  8, 12, 0);
-        WorldGenManagerMg.GenUranium = getOreConfig(config,  "uranium",   3,  3, 80, 0);
-        WorldGenManagerMg.GenThorium = getOreConfig(config,  "thorium",   5,  6, 20, 0);
         WorldGenManagerMg.GenSalt = getOreConfig(config,     "salt",      6,  8, 80, 0);
         WorldGenManagerMg.GenZinc = getOreConfig(config,     "zinc",      4,  6, 80, 0);
 
