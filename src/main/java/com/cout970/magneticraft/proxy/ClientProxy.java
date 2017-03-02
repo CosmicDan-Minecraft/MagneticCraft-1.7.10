@@ -42,9 +42,6 @@ public class ClientProxy implements IProxy {
         MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(ManagerBlocks.transformer_lm), new ItemRenderTransformerLM());
         MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(ManagerBlocks.fluidhopper), new ItemRenderFluidHopper());
         MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(ManagerBlocks.steam_engine), new ItemRenderSteamEngine());
-        MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(ManagerBlocks.reactor_vessel), new ItemRenderReactorVessel());
-        MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(ManagerBlocks.reactor_control_rods), new ItemRenderReactorControl());
-        MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(ManagerBlocks.reactor_activator), new ItemRenderReactorActivator());
         MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(ManagerBlocks.transformer_mh), new ItemRenderTransformerMH());
         MinecraftForgeClient.registerItemRenderer(ManagerItems.partheatcable, new ItemRenderHeatCable());
         MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(ManagerBlocks.inserter), new ItemRenderInserter());
@@ -56,9 +53,7 @@ public class ClientProxy implements IProxy {
         MinecraftForgeClient.registerItemRenderer(ManagerItems.tool_chainsaw, new ItemRenderChainsaw());
         MinecraftForgeClient.registerItemRenderer(ManagerItems.tool_jackhammer, new ItemRenderJackHammer());
         MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(ManagerBlocks.conveyor_l), new ItemRenderConveyorLow());
-        MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(ManagerBlocks.monitor), new ItemRenderMonitor());
         MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(ManagerBlocks.pole_tier1), new ItemRenderElectricPoleTier1());
-        MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(ManagerBlocks.droid_red), new ItemRenderDroidRED());
         MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(ManagerBlocks.hand_crank_gen), new ItemRenderHandCrank());
         MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(ManagerBlocks.wooden_shaft), new ItemRenderWoodenShaft());
         MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(ManagerBlocks.diode), new ItemRenderDiode());
@@ -86,10 +81,7 @@ public class ClientProxy implements IProxy {
         ClientRegistry.bindTileEntitySpecialRenderer(TileFluidHopper.class, new TileRenderFluidHopper());
         ClientRegistry.bindTileEntitySpecialRenderer(TileSteamEngine.class, new TileRenderSteamEngine());
         ClientRegistry.bindTileEntitySpecialRenderer(TileTransformerLow_Medium.class, new TileRenderTransformerLow_Medium());
-        ClientRegistry.bindTileEntitySpecialRenderer(TileReactorVessel.class, new TileRenderReactorVessel());
-        ClientRegistry.bindTileEntitySpecialRenderer(TileReactorControlRods.class, new TileRenderReactorControl());
         ClientRegistry.bindTileEntitySpecialRenderer(TileInserter.class, new TileRenderInserter());
-        ClientRegistry.bindTileEntitySpecialRenderer(TileReactorActivator.class, new TileRenderReactorActivator());
         ClientRegistry.bindTileEntitySpecialRenderer(TileTransformerMedium_High.class, new TileRenderTransformer_MH());
         ClientRegistry.bindTileEntitySpecialRenderer(TileTeslaCoil.class, new TileRenderTeslaCoil());
         ClientRegistry.bindTileEntitySpecialRenderer(TileConveyorBelt.class, new TileRenderConveyorBelt());
@@ -102,9 +94,7 @@ public class ClientProxy implements IProxy {
         ClientRegistry.bindTileEntitySpecialRenderer(TilePolymerizer.class, new TileRenderPolymerizer());
         ClientRegistry.bindTileEntitySpecialRenderer(TileSteamTurbineControl.class, new TileRenderTurbine());
         ClientRegistry.bindTileEntitySpecialRenderer(TileStirlingGenerator.class, new TileRenderStirling());
-        ClientRegistry.bindTileEntitySpecialRenderer(TileTextMonitor.class, new TileRenderMonitor());
         ClientRegistry.bindTileEntitySpecialRenderer(TileElectricPoleTier1.class, new TileRenderElectricPoleTier1());
-        ClientRegistry.bindTileEntitySpecialRenderer(TileDroidRED.class, new TileRenderDroidRED());
         ClientRegistry.bindTileEntitySpecialRenderer(TileOilDistillery.class, new TileRenderOilDistillery());
         ClientRegistry.bindTileEntitySpecialRenderer(TileGrindingMill.class, new TileRenderGrindingMill());
         ClientRegistry.bindTileEntitySpecialRenderer(TileWoodenShaft.class, new TileRenderWoodenShaft());

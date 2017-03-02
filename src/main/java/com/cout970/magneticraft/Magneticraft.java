@@ -36,151 +36,152 @@ import net.minecraftforge.common.ForgeChunkManager;
 import net.minecraftforge.common.ForgeChunkManager.Ticket;
 import net.minecraftforge.common.MinecraftForge;
 
-
-@Mod(modid = Magneticraft.ID, name = Magneticraft.NAME, version = Magneticraft.VERSION, guiFactory = Magneticraft.GUI_FACTORY, dependencies = "required-after:ForgeMultipart;" +
-        "after:BuildCraft|Core;after:CoFHCore;after:IC2;after:Railcraft;after:ImmersiveEngineering")
+@Mod(modid = Magneticraft.ID, name = Magneticraft.NAME, version = Magneticraft.VERSION, guiFactory = Magneticraft.GUI_FACTORY, dependencies = "required-after:ForgeMultipart;"
+		+ "after:BuildCraft|Core;after:CoFHCore;after:IC2;after:Railcraft;after:ImmersiveEngineering")
 public class Magneticraft {
 
-    public final static String ID = "Magneticraft";
-    public final static String NAME = "Magneticraft";
-    public final static String VERSION = "@VERSION@";
-    public final static String MIN_JAVA = "Java 8";
-    public final static String ENERGY_STORED_NAME = "J";
-    public final static String GUI_FACTORY = "com.cout970.magneticraft.handlers.MgGuiFactory";
-    public static final boolean DEBUG = (Boolean) Launch.blackboard.get("fml.deobfuscatedEnvironment");
-    public static String DEV_HOME = null;
-    public static boolean isBukkitServer;
+	public final static String ID = "Magneticraft";
+	public final static String NAME = "Magneticraft";
+	public final static String VERSION = "@VERSION@";
+	public final static String MIN_JAVA = "Java 8";
+	public final static String ENERGY_STORED_NAME = "J";
+	public final static String GUI_FACTORY = "com.cout970.magneticraft.handlers.MgGuiFactory";
+	public static final boolean DEBUG = (Boolean) Launch.blackboard.get("fml.deobfuscatedEnvironment");
+	public static String DEV_HOME = null;
+	public static boolean isBukkitServer = false;
 
-    @Instance(NAME)
-    public static Magneticraft INSTANCE;
+	@Instance(NAME)
+	public static Magneticraft INSTANCE;
 
-    @SidedProxy(clientSide = "com.cout970.magneticraft.proxy.ClientProxy",
-            serverSide = "com.cout970.magneticraft.proxy.ServerProxy")
-    public static IProxy proxy;
+	@SidedProxy(clientSide = "com.cout970.magneticraft.proxy.ClientProxy", serverSide = "com.cout970.magneticraft.proxy.ServerProxy")
+	public static IProxy proxy;
 
-    public static ManagerMultiPart registry;
+	public static ManagerMultiPart registry;
 
-    @EventHandler
-    public void preInit(FMLPreInitializationEvent event) {
-        Log.init(event.getModLog());
-        Log.info("Starting preInit");
+	@EventHandler
+	public void preInit(FMLPreInitializationEvent event) {
+		Log.init(event.getModLog());
+		Log.info("Starting preInit");
 
-        ManagerIntegration.searchCompatibilities();
+		ManagerIntegration.searchCompatibilities();
 
-        ManagerConfig.init(event.getSuggestedConfigurationFile());
+		ManagerConfig.init(event.getSuggestedConfigurationFile());
 
-        ManagerBlocks.initBlocks();
-        ManagerBlocks.registerBlocks();
-        ManagerBlocks.registerTileEntities();
+		ManagerBlocks.initBlocks();
+		ManagerBlocks.registerBlocks();
+		ManagerBlocks.registerTileEntities();
 
-        ManagerItems.initItems();
-        ManagerItems.registerItems();
+		ManagerItems.initItems();
+		ManagerItems.registerItems();
 
-        ManagerFluids.initFluids();
+		ManagerFluids.initFluids();
 
-        proxy.init();
+		proxy.init();
 
-        if (DEBUG) {
-            //BEGIN FINDING OF SOURCE DIR
-            File temp = event.getModConfigurationDirectory();
-            while (temp != null && temp.isDirectory()) {
-                if (new File(temp, "build.gradle").exists()) {
-                    DEV_HOME = temp.getAbsolutePath();
-                    Log.info("Found source code directory at " + DEV_HOME);
-                    break;
-                }
-                temp = temp.getParentFile();
-            }
-            if (DEV_HOME == null) {
-                throw new RuntimeException("Could not find source code directory!");
-            }
-            //END FINDING OF SOURCE DIR
-            LangHelper.registerNames();
-            LangHelper.setupLangFile();
-        }
+		if (DEBUG) {
+			// BEGIN FINDING OF SOURCE DIR
+			File temp = event.getModConfigurationDirectory();
+			while (temp != null && temp.isDirectory()) {
+				if (new File(temp, "build.gradle").exists()) {
+					DEV_HOME = temp.getAbsolutePath();
+					Log.info("Found source code directory at " + DEV_HOME);
+					break;
+				}
+				temp = temp.getParentFile();
+			}
+			if (DEV_HOME == null) {
+				throw new RuntimeException("Could not find source code directory!");
+			}
+			// END FINDING OF SOURCE DIR
+			LangHelper.registerNames();
+			LangHelper.setupLangFile();
+		}
 
-        ManagerOreDict.registerOreDict();
-        
-        isBukkitServer = setIsBukkitServer();
-        
-        Log.info("preInit Done");
-    }
+		ManagerOreDict.registerOreDict();
 
-    @EventHandler
-    public void load(FMLInitializationEvent event) {
-        Log.info("Starting Init");
+		if (event.getSide().isServer()) {
+			isBukkitServer = setIsBukkitServer();
+		}
 
-        NetworkRegistry.INSTANCE.registerGuiHandler(INSTANCE, new GuiHandler());
-        MB_Register.init();
-        EnergyInterfaceFactory.init();
-        registry = new ManagerMultiPart();
-        registry.init();
-        GameRegistry.registerFuelHandler(new SolidFuelHandler());
-        GameRegistry.registerWorldGenerator(new WorldGenManagerMg(), 11);
-        ManagerCraft.init();
-        ManagerRecipe.registerFurnaceRecipes();
-        ManagerRecipe.registerThermopileRecipes();
-        ManagerRecipe.registerBiomassBurnerRecipes();
-        ManagerNetwork.registerMessages();
-        ManagerFluids.registerFuels();
-        HandlerBuckets.INSTANCE = new HandlerBuckets();
-        MinecraftForge.EVENT_BUS.register(HandlerBuckets.INSTANCE);
-        checkVersion();
+		Log.info("preInit Done");
+	}
 
-        Log.info("Init Done");
-    }
+	@EventHandler
+	public void load(FMLInitializationEvent event) {
+		Log.info("Starting Init");
 
-    @EventHandler
-    public void postInit(FMLPostInitializationEvent event) {
-        Log.info("Starting postInit");
+		NetworkRegistry.INSTANCE.registerGuiHandler(INSTANCE, new GuiHandler());
+		MB_Register.init();
+		EnergyInterfaceFactory.init();
+		registry = new ManagerMultiPart();
+		registry.init();
+		GameRegistry.registerFuelHandler(new SolidFuelHandler());
+		GameRegistry.registerWorldGenerator(new WorldGenManagerMg(), 11);
+		ManagerCraft.init();
+		ManagerRecipe.registerFurnaceRecipes();
+		ManagerRecipe.registerThermopileRecipes();
+		ManagerRecipe.registerBiomassBurnerRecipes();
+		ManagerNetwork.registerMessages();
+		ManagerFluids.registerFuels();
+		HandlerBuckets.INSTANCE = new HandlerBuckets();
+		MinecraftForge.EVENT_BUS.register(HandlerBuckets.INSTANCE);
+		checkVersion();
 
-        if (Loader.isModLoaded("MineTweaker3")) {
-            Log.info("Setting up MineTweaker3 compatibility");
-            MgMinetweaker.init();
-        }
+		Log.info("Init Done");
+	}
 
-        if (ManagerIntegration.BUILDCRAFT) {
-            ManagerFluids.registerBCFuels();
-        }
+	@EventHandler
+	public void postInit(FMLPostInitializationEvent event) {
+		Log.info("Starting postInit");
 
-        if (ManagerIntegration.RAILCRAFT) {
-            ManagerFluids.registerRCFuels();
-        }
+		if (Loader.isModLoaded("MineTweaker3")) {
+			Log.info("Setting up MineTweaker3 compatibility");
+			MgMinetweaker.init();
+		}
 
-        if (ManagerIntegration.IE) {
-            ManagerFluids.registerIEFuels();
-        }
+		if (ManagerIntegration.BUILDCRAFT) {
+			ManagerFluids.registerBCFuels();
+		}
 
-        ForgeChunkManager.setForcedChunkLoadingCallback(INSTANCE, new MinerChunkCallBack());
-        
-        if (isBukkitServer) {
-        	Log.info("Bukkit has been detected!");
-        }
-        
-//		if(DEBUG)printOreDict();
-        Log.info("postInit Done");
-    }
+		if (ManagerIntegration.RAILCRAFT) {
+			ManagerFluids.registerRCFuels();
+		}
 
-//	private void printOreDict() {
-//		for(String i : OreDictionary.getOreNames()){
-//			Log.debug(i+" "+ManagerOreDict.getOre(i));
-//		}
-//	}
+		if (ManagerIntegration.IE) {
+			ManagerFluids.registerIEFuels();
+		}
 
-    public void checkVersion() {
-        try {
-            String version = URLConnectionReader.getText("https://raw.githubusercontent.com/cout970/Versions/master/MgVersion.txt");
-            Log.info("Last Version: " + version);
-            Log.info("Current Version: " + VERSION);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+		ForgeChunkManager.setForcedChunkLoadingCallback(INSTANCE, new MinerChunkCallBack());
 
-    @EventHandler
-    public void deleteOldBlocks(FMLMissingMappingsEvent event){
-        event.get().stream().forEach(FMLMissingMappingsEvent.MissingMapping::ignore);
-    }
+		if (isBukkitServer) {
+			Log.info("Bukkit has been detected!");
+		}
+
+		// if(DEBUG)printOreDict();
+		Log.info("postInit Done");
+	}
+
+	// private void printOreDict() {
+	// for(String i : OreDictionary.getOreNames()){
+	// Log.debug(i+" "+ManagerOreDict.getOre(i));
+	// }
+	// }
+
+	public void checkVersion() {
+		try {
+			String version = URLConnectionReader
+					.getText("https://raw.githubusercontent.com/cout970/Versions/master/MgVersion.txt");
+			Log.info("Last Version: " + version);
+			Log.info("Current Version: " + VERSION);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	@EventHandler
+	public void deleteOldBlocks(FMLMissingMappingsEvent event) {
+		event.get().stream().forEach(FMLMissingMappingsEvent.MissingMapping::ignore);
+	}
 
 	private static boolean setIsBukkitServer() {
 		try {
@@ -190,38 +191,38 @@ public class Magneticraft {
 		}
 		return true;
 	}
-    
-    public class MinerChunkCallBack implements ForgeChunkManager.OrderedLoadingCallback {
 
-        @Override
-        public void ticketsLoaded(List<Ticket> tickets, World world) {
-            for (Ticket ticket : tickets) {
-                int x = ticket.getModData().getInteger("quarryX");
-                int y = ticket.getModData().getInteger("quarryY");
-                int z = ticket.getModData().getInteger("quarryZ");
-                TileEntity tq = world.getTileEntity(x, y, z);
-                if (tq instanceof TileMiner) {
-                    ((TileMiner) tq).forceChunkLoading(ticket);
-                }
-            }
-        }
+	public class MinerChunkCallBack implements ForgeChunkManager.OrderedLoadingCallback {
 
-        @Override
-        public List<Ticket> ticketsLoaded(List<Ticket> tickets, World world, int maxTicketCount) {
-            List<Ticket> validTickets = Lists.newArrayList();
-            if (ManagerConfig.MINER_CHUNKLOADING) {
-                for (Ticket ticket : tickets) {
-                    int x = ticket.getModData().getInteger("quarryX");
-                    int y = ticket.getModData().getInteger("quarryY");
-                    int z = ticket.getModData().getInteger("quarryZ");
+		@Override
+		public void ticketsLoaded(List<Ticket> tickets, World world) {
+			for (Ticket ticket : tickets) {
+				int x = ticket.getModData().getInteger("quarryX");
+				int y = ticket.getModData().getInteger("quarryY");
+				int z = ticket.getModData().getInteger("quarryZ");
+				TileEntity tq = world.getTileEntity(x, y, z);
+				if (tq instanceof TileMiner) {
+					((TileMiner) tq).forceChunkLoading(ticket);
+				}
+			}
+		}
 
-                    Block block = world.getBlock(x, y, z);
-                    if (block == ManagerBlocks.miner) {
-                        validTickets.add(ticket);
-                    }
-                }
-            }
-            return validTickets;
-        }
-    }
+		@Override
+		public List<Ticket> ticketsLoaded(List<Ticket> tickets, World world, int maxTicketCount) {
+			List<Ticket> validTickets = Lists.newArrayList();
+			if (ManagerConfig.MINER_CHUNKLOADING) {
+				for (Ticket ticket : tickets) {
+					int x = ticket.getModData().getInteger("quarryX");
+					int y = ticket.getModData().getInteger("quarryY");
+					int z = ticket.getModData().getInteger("quarryZ");
+
+					Block block = world.getBlock(x, y, z);
+					if (block == ManagerBlocks.miner) {
+						validTickets.add(ticket);
+					}
+				}
+			}
+			return validTickets;
+		}
+	}
 }

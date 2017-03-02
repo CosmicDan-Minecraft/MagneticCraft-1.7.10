@@ -60,9 +60,6 @@ public class ManagerTooltip {
 				list.add(format + "power depends on fuel type");
 				list.add(format + "Heat generated during work slows ");
 				list.add(format + "engine down if not removed");
-			} else if (b == cpu) {
-				list.add(format + "[WIP] Fully implemented MIPS emulator, ");
-				list.add(format + "needs a MIPS CPU, a RAM module and a ROM modules");
 			} else if (b == conveyor_l) {
 				list.add(format + "Used to move objects");
 				list.add(format + "Right-click to put an item on the");
@@ -83,8 +80,6 @@ public class ManagerTooltip {
 				list.add(format + "Crushes ores, increasing yield by several times");
 			} else if (b == diode) {
 				list.add(format + "Restricts current flow direction");
-			} else if (b == droid_red) {
-				list.add(format + "[WIP]");
 			} else if (b == furnace) {
 				list.add(format + "A furnace fueled by electricity");
 				list.add(format + "Requires heating coil to work");
@@ -141,8 +136,6 @@ public class ManagerTooltip {
 				list.add(format + "Use Position Map to bind mirrors to the Core");
 				list.add(format + "Every mirror generates " +
 						EnergyConverter.RFtoCALORIES(2) / 1000 + " kcal/t if nothing is blocking the sunlight");
-			} else if (b == monitor) {
-				list.add(format + "[WIP] A means of interacting with adjacent computer");
 			} else if (b == oil_distillery) {
 				list.add(format + "Multiblock Structure, place and right-click ");
 				list.add(format + "to see the blueprint");
@@ -160,16 +153,6 @@ public class ManagerTooltip {
 				list.add(format + "Use Oil Prospector to find deposits");
 			} else if (b == rc_alternator) {
 				list.add(format + "Generates electricity from RailCraft Charge");
-			} else if (b == reactor_vessel) {
-				list.add(format + "[WIP] Part of a nuclear reactor");
-			} else if (b == reactor_activator) {
-				list.add(format + "[WIP] Part of a nuclear reactor");
-			} else if (b == reactor_wall) {
-				list.add(format + "[WIP] Part of a nuclear reactor");
-			} else if (b == reactor_control_rods) {
-				list.add(format + "[WIP] Part of a nuclear reactor");
-			} else if (b == reactor_controller) {
-				list.add(format + "[WIP] Part of a nuclear reactor");
 			} else if (b == refinery) {
 				list.add(format + "Multiblock Structure, place and right-click ");
 				list.add(format + "to see the blueprint");
@@ -223,15 +206,7 @@ public class ManagerTooltip {
 			}
 		}else if(item.getItem() instanceof ItemBasic){
 			Item i = item.getItem();
-			if(i == floppy_disk){
-				list.add(format + ItemFloppyDisk.DISK_SIZE / 1024 + "kB of storage");
-				if(((ItemFloppyDisk) i).getDiskLabel(item) != null && !((ItemFloppyDisk) i).getDiskLabel(item).equals(""))
-				list.add(format + "Name: " + ((ItemFloppyDisk) i).getDiskLabel(item));
-			}else if(i == hard_drive){
-				list.add(format + ItemHardDrive.DISK_SIZE / 1024 + "kB of storage");
-				if(((ItemHardDrive) i).getDiskLabel(item) != null && !((ItemHardDrive) i).getDiskLabel(item).equals(""))
-		        list.add(format + "Name: " + ((ItemHardDrive) i).getDiskLabel(item));
-			}else if(i == heatCoilCopper){
+            if(i == heatCoilCopper){
 				list.add(format + "Makes the electric furnace work 2 times");
 				list.add(format + "faster than a normal furnace, uses " + ((ItemHeatCoilCopper) i).getElectricConsumption() + "W");
 			}else if(i == heatCoilIron){
@@ -252,20 +227,8 @@ public class ManagerTooltip {
 			}else if(i == map_positioner){
 				list.add(format + "Orients mirrors to a Solar Tower Core");
 				list.add(format + "shift-click to apply to all mirrors in 10x10 area");
-			}else if(i == chip_cpu_mips){
-				list.add(format + "[WIP]");
-			}else if(i == chip_ram){
-				list.add(format + "[WIP]");
-			}else if(i == chip_rom){
-				list.add(format + "[WIP]");
 			}else if(i == thermometer){
 				list.add(format + "Used to measure temperature");
-			}else if(i == thorium_rod){
-				list.add(format + String.format("%.2f", NBTUtils.getDouble(ItemThoriumRod.NBT_GRAMS_NAME, item)) + "/" + ItemThoriumRod.INITIAL_NUMBER_OF_GRAMES);
-		        list.add(format + "[WIP]");
-			}else if(i == uranium_rod){
-				list.add(format + String.format("%.2f", NBTUtils.getDouble(ItemUraniumRod.NBT_GRAMS_NAME, item)) + "/" + ItemUraniumRod.INITIAL_NUMBER_OF_GRAMES);
-		        list.add(format + "[WIP]");
 			}else if(i == turbine_0 || i == turbine_1 || i == turbine_2){
 				list.add(format + "Used by Wind Turbine to generate electricity");
 			}else if(i == voltmeter){
@@ -283,9 +246,7 @@ public class ManagerTooltip {
 			}
 		}else if(item.getItem() instanceof ItemPartBase){
 			Item i = item.getItem();
-			if(i == part_optic_fiber){
-				list.add(format + "[WIP]");
-			}else if(i == part_iron_pipe){
+            if(i == part_iron_pipe){
 				list.add(format + "Transfers fluids. ");
 				list.add(format + "Right-click connection with a wrench to change mode");
 		        list.add(format + "Can transfer " + PartIronPipe.MAX_EXTRACT + "mB/t per side");

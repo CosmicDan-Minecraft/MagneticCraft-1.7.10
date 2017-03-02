@@ -1,14 +1,21 @@
 package com.cout970.magneticraft.api.util;
 
-import buildcraft.api.tools.IToolWrench;
-import codechicken.multipart.TMultiPart;
-import codechicken.multipart.TileMultipart;
-import cofh.api.item.IToolHammer;
-import com.cout970.magneticraft.api.computer.IOpticFiber;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+import java.util.function.Function;
+import java.util.regex.Pattern;
+import java.util.regex.PatternSyntaxException;
+import java.util.stream.IntStream;
+
+import org.apache.commons.lang3.tuple.Pair;
+
 import com.cout970.magneticraft.api.tool.IWrench;
 import com.cout970.magneticraft.compat.ManagerIntegration;
 import com.cout970.magneticraft.util.FakePlayerProvider;
-import com.google.common.primitives.Doubles;
+
+import buildcraft.api.tools.IToolWrench;
+import cofh.api.item.IToolHammer;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLiquid;
 import net.minecraft.init.Blocks;
@@ -22,17 +29,6 @@ import net.minecraftforge.fluids.BlockFluidBase;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.oredict.OreDictionary;
-import org.apache.commons.lang3.BooleanUtils;
-import org.apache.commons.lang3.ObjectUtils;
-import org.apache.commons.lang3.tuple.Pair;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.function.Function;
-import java.util.regex.Pattern;
-import java.util.regex.PatternSyntaxException;
-import java.util.stream.IntStream;
 
 /**
  * @author Cout970
@@ -148,17 +144,6 @@ public class MgUtils {
             if (dir == d) return true;
         }
         return false;
-    }
-
-    public static IOpticFiber getOpticFiber(TileEntity tile, MgDirection dir) {
-        if (tile instanceof TileMultipart) {
-            for (TMultiPart p : ((TileMultipart) tile).jPartList()) {
-                if (p instanceof IOpticFiber) {
-                    return (IOpticFiber) p;
-                }
-            }
-        }
-        return null;
     }
 
     public static boolean isWrench(ItemStack is) {

@@ -1,18 +1,23 @@
 package com.cout970.magneticraft;
 
-import codechicken.multipart.MultiPartRegistry;
-import codechicken.multipart.MultiPartRegistry.IPartFactory;
-import codechicken.multipart.TMultiPart;
 import com.cout970.magneticraft.api.util.MgDirection;
-import com.cout970.magneticraft.parts.PartOpticFiber;
 import com.cout970.magneticraft.parts.electric.PartCableHigh;
 import com.cout970.magneticraft.parts.electric.PartCableLow;
 import com.cout970.magneticraft.parts.electric.PartCableMedium;
-import com.cout970.magneticraft.parts.electric.wires.*;
+import com.cout970.magneticraft.parts.electric.wires.PartWireCopper_Down;
+import com.cout970.magneticraft.parts.electric.wires.PartWireCopper_East;
+import com.cout970.magneticraft.parts.electric.wires.PartWireCopper_North;
+import com.cout970.magneticraft.parts.electric.wires.PartWireCopper_South;
+import com.cout970.magneticraft.parts.electric.wires.PartWireCopper_Up;
+import com.cout970.magneticraft.parts.electric.wires.PartWireCopper_West;
 import com.cout970.magneticraft.parts.fluid.PartBrassPipe;
 import com.cout970.magneticraft.parts.fluid.PartCopperPipe;
 import com.cout970.magneticraft.parts.fluid.PartIronPipe;
 import com.cout970.magneticraft.parts.heat.PartHeatCable;
+
+import codechicken.multipart.MultiPartRegistry;
+import codechicken.multipart.MultiPartRegistry.IPartFactory;
+import codechicken.multipart.TMultiPart;
 
 public class ManagerMultiPart {
 
@@ -24,7 +29,6 @@ public class ManagerMultiPart {
         MultiPartRegistry.registerParts(new IronPipeFactory(), new String[]{ManagerItems.part_iron_pipe.getUnlocalizedName()});
         MultiPartRegistry.registerParts(new HeatCableFactory(), new String[]{ManagerItems.partheatcable.getUnlocalizedName()});
         if (Magneticraft.DEBUG) {
-            MultiPartRegistry.registerParts(new OpticFiberFactory(), new String[]{ManagerItems.part_optic_fiber.getUnlocalizedName()});
             MultiPartRegistry.registerParts(new BrassPipeFactory(), new String[]{ManagerItems.part_brass_pipe.getUnlocalizedName()});
         }
         for (MgDirection d : MgDirection.values())
@@ -42,13 +46,6 @@ public class ManagerMultiPart {
         @Override
         public TMultiPart createPart(String arg0, boolean arg1) {
             return new PartCableLow();
-        }
-    }
-
-    public class OpticFiberFactory implements IPartFactory {
-        @Override
-        public TMultiPart createPart(String arg0, boolean arg1) {
-            return new PartOpticFiber();
         }
     }
 

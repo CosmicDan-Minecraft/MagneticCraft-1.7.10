@@ -9,6 +9,4 @@ public class CreativeTabsMg {
     public static CreativeTabs SteamAgeTab = new CreativeTabSteam("Magneticraft|Steam Age");
     public static CreativeTabs ElectricalAgeTab = new CreativeTabElectrical("Magneticraft|Electrical Age");
     public static CreativeTabs IndustrialAgeTab = new CreativeTabIndustrial("Magneticraft|Industrial Age");
-    public static CreativeTabs InformationAgeTab = new CreativeTabInformation("Magneticraft|Information Age");
-
 }

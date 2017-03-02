@@ -1,12 +1,93 @@
 package com.cout970.magneticraft.handlers;
 
-import com.cout970.magneticraft.client.gui.*;
+import com.cout970.magneticraft.client.gui.GuiBasicGenerator;
+import com.cout970.magneticraft.client.gui.GuiBattery;
+import com.cout970.magneticraft.client.gui.GuiBiomassBurner;
+import com.cout970.magneticraft.client.gui.GuiBoiler;
+import com.cout970.magneticraft.client.gui.GuiBreaker;
+import com.cout970.magneticraft.client.gui.GuiBrickFurnace;
+import com.cout970.magneticraft.client.gui.GuiCombustionEngine;
+import com.cout970.magneticraft.client.gui.GuiCrafter;
+import com.cout970.magneticraft.client.gui.GuiCrusher;
+import com.cout970.magneticraft.client.gui.GuiElectricFurnace;
+import com.cout970.magneticraft.client.gui.GuiFireBox;
+import com.cout970.magneticraft.client.gui.GuiFluidHopper;
+import com.cout970.magneticraft.client.gui.GuiGeothermalPump;
+import com.cout970.magneticraft.client.gui.GuiGrinder;
+import com.cout970.magneticraft.client.gui.GuiGuideBook;
+import com.cout970.magneticraft.client.gui.GuiInserter;
+import com.cout970.magneticraft.client.gui.GuiKineticGenerator;
+import com.cout970.magneticraft.client.gui.GuiMB_Inv;
+import com.cout970.magneticraft.client.gui.GuiMiner;
+import com.cout970.magneticraft.client.gui.GuiOilDistillery;
+import com.cout970.magneticraft.client.gui.GuiPolymerizer;
+import com.cout970.magneticraft.client.gui.GuiRefinery;
+import com.cout970.magneticraft.client.gui.GuiResistance;
+import com.cout970.magneticraft.client.gui.GuiShelvingUnit;
+import com.cout970.magneticraft.client.gui.GuiSteamEngine;
+import com.cout970.magneticraft.client.gui.GuiSteamTurbine;
+import com.cout970.magneticraft.client.gui.GuiStirlingGenerator;
+import com.cout970.magneticraft.client.gui.GuiThermopile;
+import com.cout970.magneticraft.client.gui.GuiWindTurbine;
 import com.cout970.magneticraft.compat.ManagerIntegration;
-import com.cout970.magneticraft.container.*;
-import com.cout970.magneticraft.tileentity.*;
-import com.cout970.magneticraft.tileentity.multiblock.*;
-import com.cout970.magneticraft.tileentity.multiblock.controllers.*;
+import com.cout970.magneticraft.container.ContainerBasicGenerator;
+import com.cout970.magneticraft.container.ContainerBattery;
+import com.cout970.magneticraft.container.ContainerBiomassBurner;
+import com.cout970.magneticraft.container.ContainerBoiler;
+import com.cout970.magneticraft.container.ContainerBreaker;
+import com.cout970.magneticraft.container.ContainerBrickFurnace;
+import com.cout970.magneticraft.container.ContainerCombustionEngine;
+import com.cout970.magneticraft.container.ContainerCrafter;
+import com.cout970.magneticraft.container.ContainerCrusher;
+import com.cout970.magneticraft.container.ContainerElectricFurnace;
+import com.cout970.magneticraft.container.ContainerFireBox;
+import com.cout970.magneticraft.container.ContainerFluidHopper;
+import com.cout970.magneticraft.container.ContainerGeothermalPump;
+import com.cout970.magneticraft.container.ContainerGrinder;
+import com.cout970.magneticraft.container.ContainerGuideBook;
+import com.cout970.magneticraft.container.ContainerInserter;
+import com.cout970.magneticraft.container.ContainerKineticGenerator;
+import com.cout970.magneticraft.container.ContainerMB_Inv;
+import com.cout970.magneticraft.container.ContainerMiner;
+import com.cout970.magneticraft.container.ContainerOilDistillery;
+import com.cout970.magneticraft.container.ContainerPolymerizer;
+import com.cout970.magneticraft.container.ContainerRefinery;
+import com.cout970.magneticraft.container.ContainerResistance;
+import com.cout970.magneticraft.container.ContainerShelvingUnit;
+import com.cout970.magneticraft.container.ContainerSteamEngine;
+import com.cout970.magneticraft.container.ContainerStirlingGenerator;
+import com.cout970.magneticraft.container.ContainerThermopile;
+import com.cout970.magneticraft.container.ContainerTurbine;
+import com.cout970.magneticraft.container.ContainerWindMill;
+import com.cout970.magneticraft.tileentity.TileBasicGenerator;
+import com.cout970.magneticraft.tileentity.TileBattery;
+import com.cout970.magneticraft.tileentity.TileBiomassBurner;
+import com.cout970.magneticraft.tileentity.TileBoiler;
+import com.cout970.magneticraft.tileentity.TileBreaker;
+import com.cout970.magneticraft.tileentity.TileBrickFurnace;
+import com.cout970.magneticraft.tileentity.TileCombustionEngine;
+import com.cout970.magneticraft.tileentity.TileCrafter;
+import com.cout970.magneticraft.tileentity.TileElectricFurnace;
+import com.cout970.magneticraft.tileentity.TileFireBox;
+import com.cout970.magneticraft.tileentity.TileFluidHopper;
+import com.cout970.magneticraft.tileentity.TileGeothermalPump;
+import com.cout970.magneticraft.tileentity.TileInserter;
+import com.cout970.magneticraft.tileentity.TileKineticGenerator;
+import com.cout970.magneticraft.tileentity.TileMiner;
+import com.cout970.magneticraft.tileentity.TileResistance;
+import com.cout970.magneticraft.tileentity.TileSteamEngine;
+import com.cout970.magneticraft.tileentity.TileThermopile;
+import com.cout970.magneticraft.tileentity.TileWindTurbine;
+import com.cout970.magneticraft.tileentity.multiblock.TileMB_Inv;
+import com.cout970.magneticraft.tileentity.multiblock.controllers.TileCrusher;
+import com.cout970.magneticraft.tileentity.multiblock.controllers.TileGrinder;
+import com.cout970.magneticraft.tileentity.multiblock.controllers.TileOilDistillery;
+import com.cout970.magneticraft.tileentity.multiblock.controllers.TilePolymerizer;
+import com.cout970.magneticraft.tileentity.multiblock.controllers.TileRefinery;
+import com.cout970.magneticraft.tileentity.multiblock.controllers.TileSteamTurbineControl;
+import com.cout970.magneticraft.tileentity.multiblock.controllers.TileStirlingGenerator;
 import com.cout970.magneticraft.tileentity.shelf.TileShelvingUnit;
+
 import cpw.mods.fml.common.network.IGuiHandler;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
@@ -50,9 +131,6 @@ public class GuiHandler implements IGuiHandler {
         if (tile instanceof TileSteamEngine) {
             return new ContainerSteamEngine(player.inventory, tile);
         }
-        if (tile instanceof TileReactorVessel) {
-            return new ContainerReactorVessel(player.inventory, tile);
-        }
         if (tile instanceof TileCrusher) {
             return new ContainerCrusher(player.inventory, tile);
         }
@@ -91,15 +169,6 @@ public class GuiHandler implements IGuiHandler {
         }
         if (tile instanceof TileCrafter) {
             return new ContainerCrafter(player.inventory, tile);
-        }
-        if (tile instanceof TileTextMonitor) {
-            return new ContainerMonitor(player.inventory, tile);
-        }
-        if (tile instanceof TileComputer) {
-            return new ContainerComputer(player.inventory, tile);
-        }
-        if (tile instanceof TileDroidRED) {
-            return new ContainerDroidRED(player.inventory, tile);
         }
         if (tile instanceof TileOilDistillery) {
             return new ContainerOilDistillery(player.inventory, tile);
@@ -159,9 +228,6 @@ public class GuiHandler implements IGuiHandler {
         if (tile instanceof TileSteamEngine) {
             return new GuiSteamEngine(new ContainerSteamEngine(player.inventory, tile), tile);
         }
-        if (tile instanceof TileReactorVessel) {
-            return new GuiReactorVessel(new ContainerReactorVessel(player.inventory, tile), tile);
-        }
         if (tile instanceof TileCrusher) {
             return new GuiCrusher(new ContainerCrusher(player.inventory, tile), tile);
         }
@@ -200,15 +266,6 @@ public class GuiHandler implements IGuiHandler {
         }
         if (tile instanceof TileCrafter) {
             return new GuiCrafter(new ContainerCrafter(player.inventory, tile), tile);
-        }
-        if (tile instanceof TileTextMonitor) {
-            return new GuiTextMonitor(new ContainerMonitor(player.inventory, tile), tile);
-        }
-        if (tile instanceof TileComputer) {
-            return new GuiComputer(new ContainerComputer(player.inventory, tile), tile);
-        }
-        if (tile instanceof TileDroidRED) {
-            return new GuiDroidRED(new ContainerDroidRED(player.inventory, tile), tile);
         }
         if (tile instanceof TileOilDistillery) {
             return new GuiOilDistillery(new ContainerOilDistillery(player.inventory, tile), tile);

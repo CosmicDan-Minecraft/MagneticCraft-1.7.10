@@ -43,8 +43,6 @@ public class ManagerItems {
     public static Item turbine_0;
     public static Item turbine_1;
     public static Item turbine_2;
-    public static Item uranium_rod;
-    public static Item thorium_rod;
     public static Item motor;
     public static Item copper_coil;
     public static Item drill;
@@ -60,17 +58,11 @@ public class ManagerItems {
     public static Item bucket_light_oil;
     public static Item bucket_heavy_oil;
     public static Item bucket_hot_crude;
-    public static Item chip_cpu_mips;
-    public static Item chip_ram;
-    public static Item chip_rom;
-    public static Item floppy_disk;
-    public static Item hard_drive;
     public static Item part_iron_pipe;
     public static Item partheatcable;
     public static Item tool_jackhammer;
     public static Item heavy_copper_coil;
     public static Item tool_charger;
-    public static Item part_optic_fiber;
     public static Item dustBrass;
     public static Item stick_iron;
     public static Item small_battery;
@@ -140,8 +132,6 @@ public class ManagerItems {
         turbine_0 = new ItemTurbine("turbine_0", 0, 3, 3, 0.33d, 0.70f);
         turbine_1 = new ItemTurbine("turbine_1", 1, 5, 5, 1d, 1.25f);
         turbine_2 = new ItemTurbine("turbine_2", 2, 7, 7, 2d, 1.85f);
-        uranium_rod = new ItemUraniumRod("uranium_rod");
-        thorium_rod = new ItemThoriumRod("thorium_rod");
         motor = new ItemBasic("motor");
         copper_coil = new ItemBasic("copper_coil");
         drill = new ItemBasic("drill");
@@ -158,16 +148,10 @@ public class ManagerItems {
         bucket_light_oil = new ItemBucket("bucket_light_oil", ManagerFluids.LIGHT_OIL);
         bucket_heavy_oil = new ItemBucket("bucket_heavy_oil", ManagerFluids.HEAVY_OIL);
         bucket_hot_crude = new ItemBucket("bucket_hot_crude", ManagerFluids.HOT_CRUDE);
-        chip_cpu_mips = new ItemModuleCPU_MIPS("mips_cpu");
-        chip_ram = new ItemModuleRam64K("ram");
-        chip_rom = new ItemModuleROM("rom");
-        floppy_disk = new ItemFloppyDisk("floppydisk");
-        hard_drive = new ItemHardDrive("harddrive");
         partheatcable = new ItemPartHeatCable("heat_cable");
         tool_jackhammer = new ItemJackHammer("jack_hammer");
         heavy_copper_coil = new ItemHeavyCopperCoil("heavy_copper_coil");
         tool_charger = new ItemToolCharger("tool_charger");
-        part_optic_fiber = new ItemPartOpticFiber("optic_fiber");
         dustBrass = new ItemBasic("dustBrass", "dust_brass");
         stick_iron = new ItemBasic("stick_iron");
         small_battery = new ItemSmallBattery("battery_small");
@@ -211,8 +195,6 @@ public class ManagerItems {
         addItem(turbine_0, "Small Wind Turbine");
         addItem(turbine_1, "Medium Wind Turbine");
         addItem(turbine_2, "Large Wind Turbine");
-        addItem(uranium_rod, "Uranium Rod");
-        addItem(thorium_rod, "Thorium Rod");
         addItem(motor, "Electric Motor");
         addItem(copper_coil, "Copper Coil");
         addItem(drill, "Diamond Drill");
@@ -238,7 +220,6 @@ public class ManagerItems {
         addItem(tool_jackhammer, "Jackhammer");
         addItem(heavy_copper_coil, "Heavy Copper Coil");
         addItem(tool_charger, "Tool Charger");
-        addItem(part_optic_fiber, "Optic Fiber");
         addItem(dustBrass, "Brass Dust");
         addItem(stick_iron, "Iron Stick");
         addItem(small_battery, "Small Battery");
@@ -254,11 +235,6 @@ public class ManagerItems {
         addItem(hammer_iron, "Iron Hammer");
         if (Magneticraft.DEBUG) {
             addItem(manometer, "Manometer");
-            addItem(chip_cpu_mips, "Mips CPU");
-            addItem(chip_ram, "RAM Module");
-            addItem(chip_rom, "ROM Module");
-            addItem(floppy_disk, "Floppy Disk");
-            addItem(hard_drive, "Hard Drive");
             addItem(guide_book, "Guide Book");
         }
 
